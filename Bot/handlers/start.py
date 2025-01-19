@@ -4,7 +4,8 @@ from telegram.ext import ContextTypes
 async def start_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     keyboard = [
         ["💰 Купити USDT", "💱 Продати USDT"],
-        ["📊 Перегляд спредів", "⚙️ Налаштування"]
+        ["📊 Перегляд спредів", "📈 Арбітраж"],
+        ["⚙️ Налаштування"]
     ]
     reply_markup = ReplyKeyboardMarkup(keyboard, resize_keyboard=True)
     
