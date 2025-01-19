@@ -4,7 +4,7 @@ from telegram import Update, ReplyKeyboardMarkup
 from telegram.ext import Application, CommandHandler, MessageHandler, filters, ContextTypes, ConversationHandler, CallbackQueryHandler
 
 from config import TOKEN
-from handlers import start, buy, sell, spreads, settings
+from handlers import start, buy, sell, spreads, settings, arbitrage
 
 # Налаштування логування
 logging.basicConfig(
@@ -79,6 +79,12 @@ def main():
 
     # Додавання обробника для відлагодження
     application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, debug_handler))
+
+    # Додавання обробника для арбітражу
+    application.add_handler(MessageHandler(
+        filters.Regex("^📈 Арбітраж$"), 
+        arbitrage.show_arbitrage
+    ))
 
     # Додавання обробника помилок
     application.add_error_handler(error_handler)
